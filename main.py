@@ -9,10 +9,16 @@ def your_menu(foods):
             index += 1
     
         selected_choice = int(input("Your order number? "))
-        select_dish(foods, selected_choice - 1)
+        if selected_choice <= 0:
+            raise IndexError("That number is not on the menu")
+        select_dish(foods, int(selected_choice) - 1)
+        print("Please enter a number.")
     except IndexError as error:
         print(f"{error} was entered.")
         print("Next time try entering something on the menu!")
+    except ValueError as error:
+        print(f"{error} was entered.")
+        print("Try entering a number next time!")
 
 menu_items = [
     "Yakisoba",
